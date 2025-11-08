@@ -1,0 +1,46 @@
+start = "capture_idea"
+
+[steps.capture_idea]
+description = "Capture a new project idea with context and desired outcomes."
+outcomes = { ready = "outline_scope", parked = "backlog_review" }
+metadata = { template = "templates/idea.md" }
+
+[steps.outline_scope]
+description = "Draft the scope, milestones, and deliverables for the project."
+outcomes = { approved = "create_showcase", needs_research = "research_notes" }
+metadata = { doc = "documents/scoping.md" }
+
+[steps.research_notes]
+description = "Collect supporting research or references before moving forward."
+outcomes = { complete = "outline_scope" }
+metadata = { doc = "documents/research.md" }
+
+[steps.create_showcase]
+description = "Build a public artifact (blog, repo, or demo) for the project."
+outcomes = { published = "submit_updates", needs_revision = "revise_showcase" }
+metadata = { checklist = "checklists/showcase.md" }
+
+[steps.revise_showcase]
+description = "Address feedback and update the showcase artifact."
+outcomes = { resubmit = "create_showcase" }
+metadata = { checklist = "checklists/revision.md" }
+
+[steps.submit_updates]
+description = "Log the project to resume, LinkedIn, and portfolio trackers."
+outcomes = { logged = "retrospective" }
+metadata = { tracker = "spreadsheets/projects.xlsx" }
+
+[steps.retrospective]
+description = "Reflect on what worked, what did not, and future improvements."
+outcomes = { repeat = "capture_idea" }
+metadata = { questions = "documents/retro.md" }
+
+[steps.backlog_review]
+description = "Regularly revisit parked ideas to decide next actions."
+outcomes = { revive = "capture_idea", drop = "archive" }
+metadata = { cadence = "monthly" }
+
+[steps.archive]
+description = "Archive ideas that are no longer relevant."
+outcomes = { revisit = "backlog_review" }
+metadata = { location = "archive/ideas" }
